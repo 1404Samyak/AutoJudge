@@ -1,0 +1,9 @@
+numpy
+pandas
+streamlit
+pykeen
+gensim
+catboost
+lightgbm
+nltk
+joblib
