@@ -111,13 +111,17 @@ These models were chosen based on performance, stability, and generalization on 
    git clone https://huggingface.co/spaces/1404Samyak/AutoJudge
 
 2. **Navigate to the Project Directory**
+    ```bash
     cd AutoJudge
 
 3. **Install Dependencies**
-  pip install -r requirements.txt
+   ```bash
+   pip install -r requirements.txt
 
 4. **Run the Application**
+  ```bash
   python streamlit_app.py
+  ```
 
 ### 🎬 Demo
 
@@ -142,6 +146,7 @@ https://huggingface.co/spaces/1404Samyak/AutoJudge
 - **Data Processing**: Pandas, NumPy
 - **Deep Learning Backend**: PyTorch
 - **Deployment Platform**: Hugging Face Spaces
+
 
 
 
