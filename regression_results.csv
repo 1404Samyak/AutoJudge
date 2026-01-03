@@ -1,0 +1,9 @@
+Model,MAE,RMSE,R2 Score
+CatBoost Regressor,1.1086,1.4523,0.7092
+LightGBM Regressor,1.1124,1.4615,0.7055
+Gradient Boosting Regressor,1.1367,1.4829,0.6969
+Random Forest Regressor,1.1858,1.5396,0.6732
+XGBoost Regressor,1.1756,1.5509,0.6684
+Linear Regression,1.2001,1.5746,0.6582
+AdaBoost Regressor,1.413,1.7024,0.6005
+Decision Tree Regressor,1.6062,2.1729,0.3492
