@@ -120,7 +120,7 @@ These models were chosen based on performance, stability, and generalization on 
 
 4. **Run the Application**
   ```bash
-  python streamlit_app.py
+    python streamlit_app.py
   ```
 
 ### 🎬 Demo
@@ -146,6 +146,7 @@ https://huggingface.co/spaces/1404Samyak/AutoJudge
 - **Data Processing**: Pandas, NumPy
 - **Deep Learning Backend**: PyTorch
 - **Deployment Platform**: Hugging Face Spaces
+
 
 
 
