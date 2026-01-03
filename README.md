@@ -19,7 +19,7 @@ short_description: Streamlit template space
 - 🧩 **Categorical Classification** (Easy / Medium / Hard) : Automatically assigns each problem to a difficulty class — **Easy, Medium, or Hard** — enabling quick and intuitive understanding of problem complexity.
 - 📈 **Continuous Difficulty Regression** (Score from 0–10) : Predicts a fine-grained numerical difficulty score ranging from **0 to 10**, offering a more precise and scalable measure of problem difficulty beyond fixed labels.
 
-- By combining these two perspectives, AutoJudge delivers a comprehensive difficulty assessment, making it suitable for ***competitive programming analysis, problem curation etc 
+- By combining these two perspectives, AutoJudge delivers a comprehensive difficulty assessment, making it suitable for **competitive programming** analysis, problem curation etc 
 
 ---
 
@@ -134,4 +134,5 @@ https://huggingface.co/spaces/1404Samyak/AutoJudge
 - Knowledge Graphs: PyKEEN (TransE)
 - Data Processing: Pandas, NumPy
 - Deep Learning Backend: PyTorch
+
 - Deployment Platform: Hugging Face Spaces
