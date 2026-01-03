@@ -49,7 +49,9 @@ Structural and statistical metadata are extracted directly from the problem cont
 To capture semantic meaning from problem statements:
 
 - The ***NLTK*** library was used to split each problem statement into smaller units called tokens (words). This step helps the model understand the text word by word instead of treating the whole sentence as a single string.
+  
 - Instead of using a pre-trained model, a **Word2Vec model** was trained on the dataset. This allows the embeddings to better capture competitive programming–specific terms, problem language, and patterns present in the dataset. Embeddings generated **300-dimensional embeddings** (`emb_0` → `emb_299`) to capture semantic menaing of problem,input and output description.
+  
 - Since each problem contains many words, the embeddings of all words are averaged using mean pooling. This creates **one fixed-size vector** that represents the overall meaning of the entire problem statement, making it easy to use as input for machine learning models.
 
 ---
@@ -58,8 +60,11 @@ To capture semantic meaning from problem statements:
 To encode relationships between algorithmic concepts:
 
 - **Knowlege Graph Construction** : A **Knowledge Graph (KG)** was built to represent relationships between **algorithmic tags and technical concepts** (such as DP, graphs, binary search, constraints, etc.). Each concept is treated as a **node**, and meaningful relationships between them are stored as **edges**.
+  
 - **Graph Relationship Pipeline** : Problem metadata (tags, categories, limits, and concepts) is first processed and converted into **(head, relation, tail)** triplets. These triplets define how different concepts are connected and form the input training data for the knowledge graph model.
+  
 - **TransE Model for Graph Learning** : The TransE (Translation Embedding) model is used to learn vector representations of graph entities. It works by learning embeddings such that **head + relation ≈ tail**,allowing the model to capture how different algorithmic concepts are related to each other.The model is trained using **Margin Ranking Loss**, which helps the model distinguish correct relationships from incorrect (negative) ones. This ensures that valid concept relationships are placed closer together in the embedding space.
+  
 - **KG Embedding Generation** : After training, each concept is represented as a **128-dimensional vector**. These vectors (kg_0 → kg_127) act as structured knowledge features and are appended to the problem’s feature set before being passed to the final prediction models.
 
 ---
@@ -136,4 +141,5 @@ https://huggingface.co/spaces/1404Samyak/AutoJudge
 - Deep Learning Backend: PyTorch
 
 - Deployment Platform: Hugging Face Spaces
+
 
