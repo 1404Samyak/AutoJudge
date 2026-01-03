@@ -141,7 +141,8 @@ https://huggingface.co/spaces/1404Samyak/AutoJudge
 - **Knowledge Graphs**: PyKEEN (TransE)
 - **Data Processing**: Pandas, NumPy
 - **Deep Learning Backend**: PyTorch
--**Deployment Platform**: Hugging Face Spaces
+- **Deployment Platform**: Hugging Face Spaces
+
 
 
 
