@@ -39,9 +39,11 @@ AutoJudge follows a **four-stage modular pipeline**, ensuring robustness and sca
 Structural and statistical metadata are extracted directly from the problem content to capture intrinsic complexity.
 
 **Key Dense Features:**
-- **Statistical Metrics:** `sample_count`, `time_limit`, `memory_limit`, `text_length`,`avg_in_char`,`avg_out_char`,`avg_line`,`sample_count`
-- **Complexity Indicators:** `index_score`, `avg_line_count`, `avg_sentence_length`, `formula_symbol_count`
-- **Algorithmic Tags:** One-hot encoded tags such as `dp`, `greedy`, `math`, `graphs`, `geometry`, and `number theory`
+- ***Statistical Metrics:*** `sample_count`, `time_limit`, `memory_limit`, `text_length`,`avg_in_char`,`avg_out_char`,`avg_line`,`sample_count`
+  
+- ***Complexity Indicators:*** `index_score`, `avg_line_count`, `avg_sentence_length`, `formula_symbol_count`
+  
+- ***Algorithmic Tags:*** One-hot encoded tags such as `dp`, `greedy`, `math`, `graphs`, `geometry`, and `number theory`
 
 ---
 
@@ -59,13 +61,13 @@ To capture semantic meaning from problem statements:
 ### 3️⃣ Knowledge Graph Modeling (TransE)
 To encode relationships between algorithmic concepts:
 
-- **Knowlege Graph Construction** : A **Knowledge Graph (KG)** was built to represent relationships between **algorithmic tags and technical concepts** (such as DP, graphs, binary search, constraints, etc.). Each concept is treated as a **node**, and meaningful relationships between them are stored as **edges**.
+- ***Knowlege Graph Construction*** : A **Knowledge Graph (KG)** was built to represent relationships between **algorithmic tags and technical concepts** (such as DP, graphs, binary search, constraints, etc.). Each concept is treated as a **node**, and meaningful relationships between them are stored as **edges**.
   
-- **Graph Relationship Pipeline** : Problem metadata (tags, categories, limits, and concepts) is first processed and converted into **(head, relation, tail)** triplets. These triplets define how different concepts are connected and form the input training data for the knowledge graph model.
+- ***Graph Relationship Pipeline*** : Problem metadata (tags, categories, limits, and concepts) is first processed and converted into **(head, relation, tail)** triplets. These triplets define how different concepts are connected and form the input training data for the knowledge graph model.
   
-- **TransE Model for Graph Learning** : The TransE (Translation Embedding) model is used to learn vector representations of graph entities. It works by learning embeddings such that **head + relation ≈ tail**,allowing the model to capture how different algorithmic concepts are related to each other.The model is trained using **Margin Ranking Loss**, which helps the model distinguish correct relationships from incorrect (negative) ones. This ensures that valid concept relationships are placed closer together in the embedding space.
+- ***TransE Model for Graph Learning*** : The TransE (Translation Embedding) model is used to learn vector representations of graph entities. It works by learning embeddings such that **head + relation ≈ tail**,allowing the model to capture how different algorithmic concepts are related to each other.The model is trained using **Margin Ranking Loss**, which helps the model distinguish correct relationships from incorrect (negative) ones. This ensures that valid concept relationships are placed closer together in the embedding space.
   
-- **KG Embedding Generation** : After training, each concept is represented as a **128-dimensional vector**. These vectors (kg_0 → kg_127) act as structured knowledge features and are appended to the problem’s feature set before being passed to the final prediction models.
+- ***KG Embedding Generation*** : After training, each concept is represented as a **128-dimensional vector**. These vectors (kg_0 → kg_127) act as structured knowledge features and are appended to the problem’s feature set before being passed to the final prediction models.
 
 ---
 
@@ -132,14 +134,14 @@ https://huggingface.co/spaces/1404Samyak/AutoJudge
 
 ### 🧠 Technologies Used
 
-- Programming Language: Python
-- Web Framework: Streamlit / Gradio
-- Machine Learning Models: LightGBM, CatBoost, Logistic/Linear Regression, SVM, RandomForest, XGBoost, GradientBoost, AdaBoost
-- NLP & Embeddings: Word2Vec (Gensim), NLTK
-- Knowledge Graphs: PyKEEN (TransE)
-- Data Processing: Pandas, NumPy
-- Deep Learning Backend: PyTorch
+- **Programming Language**: Python
+- **Web Framework**: Streamlit 
+- **Machine Learning Models**: LightGBM, CatBoost, Logistic/Linear Regression, SVM, RandomForest, XGBoost, GradientBoost, AdaBoost
+- **NLP & Embeddings**: Word2Vec (Gensim), NLTK
+- **Knowledge Graphs**: PyKEEN (TransE)
+- **Data Processing**: Pandas, NumPy
+- **Deep Learning Backend**: PyTorch
+-**Deployment Platform**: Hugging Face Spaces
 
-- Deployment Platform: Hugging Face Spaces
 
 
