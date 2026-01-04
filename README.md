@@ -60,7 +60,6 @@ Structural and statistical metadata are extracted directly from the problem cont
   
 - ***Algorithmic Tags:*** One-hot encoded tags such as `dp`, `greedy`, `math`, `graphs`, `geometry`, and `number theory`
 
----
 
 ### 2️⃣ Textual Embeddings (Word2Vec)
 To capture semantic meaning from problem statements:
@@ -71,7 +70,6 @@ To capture semantic meaning from problem statements:
   
 - Since each problem contains many words, the embeddings of all words are averaged using mean pooling. This creates **one fixed-size vector** that represents the overall meaning of the entire problem statement, making it easy to use as input for machine learning models.
 
----
 
 ### 3️⃣ Knowledge Graph Modeling (TransE)
 To encode relationships between algorithmic concepts:
@@ -84,7 +82,6 @@ To encode relationships between algorithmic concepts:
   
 - ***KG Embedding Generation*** : After training, each concept is represented as a **128-dimensional vector**. These vectors (kg_0 → kg_127) act as structured knowledge features and are appended to the problem’s feature set before being passed to the final prediction models.
 
----
 
 ### 4️⃣ Model Selection & Training
 Multiple ***Machine Learning*** models were evaluated before final selection such as LightGBM, CatBoost, Logistic/Linear Regression, SVM, RandomForest, XGBoost, GradientBoost, AdaBoost
@@ -107,7 +104,6 @@ These models were chosen based on performance, stability, and generalization on 
 | Medium   | 0.6075   | 0.5629 | 0.5843  | 517     |
 | Hard     | 0.8480   | 0.8639 | 0.8559  | 904     |
 
----
 
 ### 🔹 Regression Results
 
@@ -148,6 +144,7 @@ These models were chosen based on performance, stability, and generalization on 
 - **Data Processing**: Pandas, NumPy
 - **Deep Learning Backend**: PyTorch
 - **Deployment Platform**: Hugging Face Spaces
+
 
 
 
