@@ -125,7 +125,7 @@ These models were chosen based on performance, stability, and generalization on 
 
 ### 🎬 Demo
 
-- 🎥 Demo Video: (Add your demo video link here)
+- 🎥 Demo Video: https://drive.google.com/file/d/1y4fTTMJjjG8LWANeRBlDzk7Bkbvf-R9r/view?usp=sharing
 
 - 🌐 Live App (Hugging Face Space):
 https://huggingface.co/spaces/1404Samyak/AutoJudge
@@ -147,6 +147,7 @@ https://huggingface.co/spaces/1404Samyak/AutoJudge
 - **Data Processing**: Pandas, NumPy
 - **Deep Learning Backend**: PyTorch
 - **Deployment Platform**: Hugging Face Spaces
+
 
 
 
