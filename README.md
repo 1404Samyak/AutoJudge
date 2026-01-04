@@ -22,6 +22,21 @@ short_description: Streamlit template space
 - By combining these two perspectives, AutoJudge delivers a comprehensive difficulty assessment, making it suitable for **competitive programming** analysis, problem curation etc 
 
 ---
+### 🎬 Demo
+
+- 🎥 Demo Video: https://drive.google.com/file/d/1y4fTTMJjjG8LWANeRBlDzk7Bkbvf-R9r/view?usp=sharing
+
+- 🌐 Live App (Hugging Face Space):
+https://huggingface.co/spaces/1404Samyak/AutoJudge
+
+
+### 📚 Resources
+
+- 📓 Google Colab Notebook: https://colab.research.google.com/drive/1mirwFBvUqevVA2tQdQL_MZQ0ybJEvThT?usp=sharing
+  Kindly click on the this link to view the Colab notebook directly. Some cell outputs and execution logs are not visible in the GitHub source code preview, so please use the link to access the full notebook on Google Colab, where all cell outputs are properly displayed.
+- 📊 Dataset Link: https://huggingface.co/datasets/open-r1/codeforces
+
+---
 
 ## 👨‍🔬 Developer Details
 - **Name:** Samyak Mahapatra  
@@ -123,20 +138,6 @@ These models were chosen based on performance, stability, and generalization on 
    python streamlit_app.py
     ```
 
-### 🎬 Demo
-
-- 🎥 Demo Video: https://drive.google.com/file/d/1y4fTTMJjjG8LWANeRBlDzk7Bkbvf-R9r/view?usp=sharing
-
-- 🌐 Live App (Hugging Face Space):
-https://huggingface.co/spaces/1404Samyak/AutoJudge
-
-
-### 📚 Resources
-
-- 📓 Google Colab Notebook: https://colab.research.google.com/drive/1mirwFBvUqevVA2tQdQL_MZQ0ybJEvThT?usp=sharing
-  Kindly click on the this link to view the Colab notebook directly. Some cell outputs and execution logs are not visible in the GitHub source code preview, so please use the link to access the full notebook on Google Colab, where all cell outputs are properly displayed.
-- 📊 Dataset Link: https://huggingface.co/datasets/open-r1/codeforces
-
 ### 🧠 Technologies Used
 
 - **Programming Language**: Python
@@ -147,6 +148,7 @@ https://huggingface.co/spaces/1404Samyak/AutoJudge
 - **Data Processing**: Pandas, NumPy
 - **Deep Learning Backend**: PyTorch
 - **Deployment Platform**: Hugging Face Spaces
+
 
 
 
