@@ -9,44 +9,29 @@ import torch
 import json
 from gensim.models import Word2Vec
 from nltk.tokenize import word_tokenize
-from pykeen.models.unimodal.trans_e import TransE  # correct import
+from pykeen.models.unimodal.trans_e import TransE  
 from torch.serialization import safe_globals  # for safe PyTorch load
 
-# ==============================
-# NLTK setup
-# ==============================
 nltk.download('punkt_tab')
 nltk.download('punkt')
 
-# ==============================
-# Page config
-# ==============================
 st.set_page_config(page_title="Problem Difficulty Predictor", layout="centered")
 st.title("📘 Problem Difficulty Predictor-AutoJudge")
 
-# ==============================
-# Base directory and model paths
-# ==============================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # src/
 WORD2VEC_PATH = os.path.join(BASE_DIR, "word2vec_problem_solver.model")
 TRANS_E_PATH = os.path.join(BASE_DIR, "transe_model.pt")
 ENTITY_ID_PATH = os.path.join(BASE_DIR, "entity_to_id.json")
 
-# ==============================
-# Load Word2Vec model
-# ==============================
 @st.cache_resource
 def load_word2vec_model():
     return Word2Vec.load(WORD2VEC_PATH)
 w2v_model = load_word2vec_model()
 VECTOR_SIZE = w2v_model.vector_size
 
-# ==============================
-# Load TransE model and entity_to_id mapping (safe)
-# ==============================
 @st.cache_resource
 def load_transE_model():
-    with safe_globals([TransE]):  # pass actual class, not string
+    with safe_globals([TransE]):  
         model = torch.load(TRANS_E_PATH, map_location='cpu', weights_only=False)
     with open(ENTITY_ID_PATH, 'r') as f:
         entity_to_id = json.load(f)
@@ -54,9 +39,6 @@ def load_transE_model():
 
 transE_model, entity_to_id = load_transE_model()
 
-# ==============================
-# KG embedding function
-# ==============================
 def get_kg_embedding(entity_name):
     if entity_name in entity_to_id:
         idx = entity_to_id[entity_name]
@@ -64,9 +46,6 @@ def get_kg_embedding(entity_name):
     else:
         return [0] * 128
 
-# ==============================
-# Letter scoring for problem index
-# ==============================
 LETTER_SCORE = {ch: (i + 1) * 10 for i, ch in enumerate(string.ascii_uppercase)}
 LETTER_SCORE["Z"] = 0
 
@@ -85,9 +64,6 @@ def index_to_score(idx):
     letter, number = parse_problem_index(idx)
     return LETTER_SCORE.get(letter, 0) + number
 
-# ==============================
-# Extract problem ID from URL
-# ==============================
 def extract_problem_id(url: str):
     pattern = r"/problem/(\d+)/([A-Z][A-Z0-9]*)"
     match = re.search(pattern, url)
@@ -95,18 +71,12 @@ def extract_problem_id(url: str):
         return match.group(1) + match.group(2)
     return None
 
-# ==============================
-# Word2Vec embedding functions
-# ==============================
 def get_mean_vector(tokens, model):
     vectors = [model.wv[word] for word in tokens if word in model.wv]
     if not vectors:
         return np.zeros(model.vector_size)
     return np.mean(vectors, axis=0)
 
-# ==============================
-# Text statistical features
-# ==============================
 def text_length(text):
     return len(text.split())
 
@@ -129,9 +99,6 @@ def extract_text_features(text):
         "formula_symbol_count": formula_symbol_count(text)
     }
 
-# ==============================
-# Problem Link
-# ==============================
 st.subheader("🔗 Problem Link")
 problem_url = st.text_input(
     "Paste Codeforces problem link",
@@ -148,17 +115,11 @@ if problem_url:
         st.error("Invalid Codeforces problem link")
 st.divider()
 
-# ==============================
-# Constraints
-# ==============================
 st.subheader("⏱ Constraints")
 time_limit = st.text_input("Time Limit (e.g. 1s, 2s)")
 memory_limit = st.text_input("Memory Limit (e.g. 256MB)")
 st.divider()
 
-# ==============================
-# Problem statement
-# ==============================
 st.subheader("📝 Problem Statement")
 description = st.text_area("Problem Description", height=150)
 input_desc = st.text_area("Input Description", height=120)
@@ -166,9 +127,6 @@ output_desc = st.text_area("Output Description", height=120)
 combined_text = " ".join([description.strip(), input_desc.strip(), output_desc.strip()])
 st.divider()
 
-# ==============================
-# Tags
-# ==============================
 st.subheader("🏷 Tags")
 problem_tags = [
     "brute force", "implementation", "math", "dp", "matrices", "greedy",
@@ -188,14 +146,10 @@ if tags_input:
     tags = [tag.strip() for tag in tags_input.split(",") if tag.strip()]
     tag_vector = [1 if tag in tags else 0 for tag in problem_tags]
 
-# Show success only if tags entered
 if tags:
     st.success("0/1 Tag table successfully created")
 st.divider()
 
-# ==============================
-# Word2Vec embedding
-# ==============================
 # st.subheader("🧠 Word2Vec Embeddings")
 tokens = word_tokenize(combined_text.lower())
 embedding_vector = get_mean_vector(tokens, w2v_model)
@@ -204,14 +158,10 @@ embeddings_df = pd.DataFrame(
     columns=[f"emb_{i}" for i in range(len(embedding_vector))]
 )
 
-# Show success only if text provided
 if combined_text.strip():
     st.success("Word2Vec embeddings successfully generated")
 st.divider()
 
-# ==============================
-# KG Embeddings for Tags
-# ==============================
 # st.subheader("🧬 KG Embeddings for Tags")
 if tags:
     kg_embeddings = np.mean([get_kg_embedding(tag.replace(" ", "").lower()) for tag in tags], axis=0)
@@ -223,9 +173,6 @@ kg_embeddings_df = pd.DataFrame(
     columns=[f"kg_{i}" for i in range(128)]
 )
 
-# ==============================
-# Other features
-# ==============================
 other_features = {
     "id": problem_id,
     "index_score": index_score,
@@ -236,14 +183,8 @@ other_df = pd.DataFrame([other_features])
 for tag, value in zip(problem_tags, tag_vector):
     other_df[tag] = value
 
-# ==============================
-# Text features
-# ==============================
 text_features_df = pd.DataFrame([extract_text_features(combined_text)])
 
-# ==============================
-# Examples Input/Output
-# ==============================
 st.subheader("🧪 Add Input/Output TestCases")
 if "examples" not in st.session_state:
     st.session_state.examples = []
@@ -263,9 +204,6 @@ if add_button:
         })
         st.success(f"Example #{len(st.session_state.examples)} added!")
 
-# ==============================
-# Structural features function
-# ==============================
 def extract_structural_features(example_list):
     all_ex_in_char_per_line = []
     all_ex_out_char_per_line = []
@@ -287,9 +225,6 @@ def extract_structural_features(example_list):
         "num_examples": len(example_list)
     }
 
-# ==============================
-# Compute structural features (fixed column names)
-# ==============================
 if st.session_state.examples:
     structural_features = extract_structural_features(st.session_state.examples)
     # Rename keys to match expected X_test column names
@@ -309,9 +244,6 @@ else:
 
 structural_df = pd.DataFrame([structural_features])
 
-# ==============================
-# Final concatenation
-# ==============================
 final_df = pd.concat(
     [
         other_df.reset_index(drop=True),
@@ -323,32 +255,20 @@ final_df = pd.concat(
     axis=1
 )
 
-# ==============================
-# Create X_test by dropping problem_id
-# ==============================
 X_test = final_df.drop(columns=["id"])
 X_test["time_limit"] = pd.to_numeric(X_test["time_limit"], errors="coerce")
 X_test["memory_limit"] = pd.to_numeric(X_test["memory_limit"], errors="coerce")
 
-# ==============================
-# Reorder X_test columns according to your provided order
-# ==============================
 column_order = ['time_limit', 'memory_limit', 'index_score', 'text_length', 'avg_sentence_length', 'formula_symbol_count', '*special', '2-sat', 'binary search', 'bitmasks', 'brute force', 'chinese remainder theorem', 'combinatorics', 'constructive algorithms', 'data structures', 'dfs and similar', 'divide and conquer', 'dp', 'dsu', 'expression parsing', 'fft', 'flows', 'games', 'geometry', 'graph matchings', 'graphs', 'greedy', 'hashing', 'implementation', 'interactive', 'math', 'matrices', 'meet-in-the-middle', 'number theory', 'probabilities', 'schedules', 'shortest paths', 'sortings', 'string suffix structures', 'strings', 'ternary search', 'trees', 'two pointers', 'avg_in_char_per_line', 'avg_out_char_per_line', 'avg_line_count', 'sample_count'] + \
                [f"emb_{i}" for i in range(300)] + \
                [f"kg_{i}" for i in range(128)]
 final_column_order = [col for col in column_order if col in X_test.columns]
 X_test = X_test[final_column_order]
 
-# ==============================
-# Display X_test
-# ==============================
 st.subheader("📦 Final X_test Table")
 st.dataframe(X_test)
 st.info(f"Final X_test shape: {X_test.shape}")
 
-# ==============================
-# Load models for prediction
-# ==============================
 import joblib
 import lightgbm as lgb
 
@@ -357,7 +277,6 @@ REGRESSION_MODEL_PATH = os.path.join(BASE_DIR, "regression_lgbm_model.pkl")  # r
 st.divider()
 st.subheader("🎯 Difficulty Prediction")
 
-# Load models
 @st.cache_resource
 def load_lgbm_model(path):
     return joblib.load(path)
@@ -365,7 +284,6 @@ def load_lgbm_model(path):
 lgbm_class_model = load_lgbm_model(CLASSIFICATION_MODEL_PATH)
 lgbm_reg_model = load_lgbm_model(REGRESSION_MODEL_PATH)
 
-# Button to trigger prediction
 if st.button("Predict Difficulty"):
     # Classification prediction
     pred_class = lgbm_class_model.predict(X_test)[0]
@@ -373,7 +291,7 @@ if st.button("Predict Difficulty"):
     pred_scaled = lgbm_reg_model.predict(X_test)[0]
     pred_scaled = np.clip(pred_scaled, 0.0, 1.0)
     pred_actual = pred_scaled * 10  # inverse min-max scaling
-    # Display both together
     st.success(f"Predicted Difficulty Class: **{pred_class}**")
     st.success(f"Predicted Difficulty Score: **{pred_actual:.2f} / 10**")
+
 
