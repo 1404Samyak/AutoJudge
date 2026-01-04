@@ -11,7 +11,7 @@ pinned: false
 short_description: Streamlit template space
 ---
 
-# 🚀 AutoJudge: Multi-Task AI Prediction Suite
+# 🚀 AutoJudge: Programming Problems Difficulty Prediction Model 
 
 ## 📌 Project Overview
 **AutoJudge** is an advanced **Machine Learning–driven evaluation framework** built to automatically analyze and assess complex technical problems. It leverages multi-task learning to provide both qualitative and quantitative difficulty insights from a single input.
@@ -146,6 +146,7 @@ https://huggingface.co/spaces/1404Samyak/AutoJudge
 - **Data Processing**: Pandas, NumPy
 - **Deep Learning Backend**: PyTorch
 - **Deployment Platform**: Hugging Face Spaces
+
 
 
 
