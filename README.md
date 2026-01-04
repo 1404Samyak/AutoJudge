@@ -134,7 +134,7 @@ https://huggingface.co/spaces/1404Samyak/AutoJudge
 ### 📚 Resources
 
 - 📓 Google Colab Notebook: https://colab.research.google.com/drive/1mirwFBvUqevVA2tQdQL_MZQ0ybJEvThT?usp=sharing
-  Kindly click on the above link to see the colab file directly to see all cell outputs ,which were not shown in github preview of source code 
+  Kindly click on the this link to view the Colab notebook directly. Some cell outputs and execution logs are not visible in the GitHub source code preview, so please use the link to access the full notebook on Google Colab, where all cell outputs are properly displayed.
 - 📊 Dataset Link: https://huggingface.co/datasets/open-r1/codeforces
 
 ### 🧠 Technologies Used
@@ -147,6 +147,7 @@ https://huggingface.co/spaces/1404Samyak/AutoJudge
 - **Data Processing**: Pandas, NumPy
 - **Deep Learning Backend**: PyTorch
 - **Deployment Platform**: Hugging Face Spaces
+
 
 
 
