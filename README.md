@@ -148,6 +148,8 @@ Click on https://huggingface.co/spaces/1404Samyak/AutoJudge to view the live app
 
 - Add 2–3 sample input/output test cases (or all available ones) from the problem so the model gets a rough idea of the input–output structure.
 
+- Finally click on predict button to predict the difficulty class(easy/medium/hard) and the difficulty score out of 10.
+
 ---
 ### 🧠 Technologies Used
 
@@ -159,6 +161,7 @@ Click on https://huggingface.co/spaces/1404Samyak/AutoJudge to view the live app
 - **Data Processing**: Pandas, NumPy
 - **Deep Learning Backend**: PyTorch
 - **Deployment Platform**: Hugging Face Spaces
+
 
 
 
