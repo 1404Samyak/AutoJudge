@@ -97,7 +97,7 @@ These models were chosen based on performance, stability, and generalization on 
 
 ## 📈 Model Performance
 
-### 🔹 Classification Results (LightGBM)
+### 🔹 Classification Results for the best model (LightGBM)
 - **Overall Accuracy:** **77.09%**
 
 | Difficulty | Precision | Recall | F1-Score | Support |
@@ -161,6 +161,7 @@ Click on https://huggingface.co/spaces/1404Samyak/AutoJudge to view the live app
 - **Data Processing**: Pandas, NumPy
 - **Deep Learning Backend**: PyTorch
 - **Deployment Platform**: Hugging Face Spaces
+
 
 
 
