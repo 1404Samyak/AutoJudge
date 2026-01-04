@@ -137,7 +137,7 @@ These models were chosen based on performance, stability, and generalization on 
    ```bash
    python streamlit_app.py
     ```
-
+---
 ### 🧠 Technologies Used
 
 - **Programming Language**: Python
@@ -148,6 +148,7 @@ These models were chosen based on performance, stability, and generalization on 
 - **Data Processing**: Pandas, NumPy
 - **Deep Learning Backend**: PyTorch
 - **Deployment Platform**: Hugging Face Spaces
+
 
 
 
