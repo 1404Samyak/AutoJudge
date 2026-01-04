@@ -115,6 +115,7 @@ These models were chosen based on performance, stability, and generalization on 
 | **RMSE** | **1.4523** | 1.4615 |
 | **R² Score** | **0.7092** | 0.7055 |
 
+- Overall results for the other ML models are mentioned in the report.pdf 
 ---
 
 ## ▶️ Run Locally
@@ -161,6 +162,7 @@ Click on https://huggingface.co/spaces/1404Samyak/AutoJudge to view the live app
 - **Data Processing**: Pandas, NumPy
 - **Deep Learning Backend**: PyTorch
 - **Deployment Platform**: Hugging Face Spaces
+
 
 
 
