@@ -136,12 +136,17 @@ These models were chosen based on performance, stability, and generalization on 
    python streamlit_app.py
     ```
 ---
-### Web Interface
+## Web Interface
 Click on https://huggingface.co/spaces/1404Samyak/AutoJudge to view the live app
-- Pick any problem from codeforces and paste its link shown at address bar and paste it in the link .The code will extract the problem id to get information
-- Then paste the constraints (time and memory limit per test) displayed for each problem in the constraints section
-- Then paste the problem description ,input description and output scription as it is the word2vec model will take care of it
-- Then provide the problem tags given for all problems and finally give some sample input /output examples which are available as test cases for each problem in codeforces.You can give 2-3 or all of test cases  just for the model to get rough idea of input and output structure.
+- Pick any problem from Codeforces and copy its URL from the address bar. Paste the link into the input field; the system will automatically extract the problem ID to fetch related information.
+
+- Copy and paste the constraints shown on the problem page, specifically the time limit per test and memory limit per test, into the constraints section.
+
+- Paste the problem description, input description, and output description exactly as provided on Codeforces; the Word2Vec model will handle the text understanding.
+
+- Provide all the problem tags associated with the problem to help the model understand the algorithmic category.
+
+- Add 2–3 sample input/output test cases (or all available ones) from the problem so the model gets a rough idea of the input–output structure.
 
 ---
 ### 🧠 Technologies Used
@@ -154,6 +159,7 @@ Click on https://huggingface.co/spaces/1404Samyak/AutoJudge to view the live app
 - **Data Processing**: Pandas, NumPy
 - **Deep Learning Backend**: PyTorch
 - **Deployment Platform**: Hugging Face Spaces
+
 
 
 
